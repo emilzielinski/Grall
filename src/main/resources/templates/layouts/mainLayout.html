@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head lang="en">
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="main.css" />
+
+
+<title>Graal</title>
+
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+
+<link
+	href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"
+	th:src="@{http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css}"
+	rel="stylesheet" media="screen" />
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"
+		  th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css}"
+		  rel="stylesheet" />
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css"
+	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css}"
+	rel="stylesheet" />
+
+<link href="../static/css/main.css" th:href="@{/css/main.css}"
+	rel="stylesheet" />
+
+<script src="http://cdn.jsdelivr.net/webjars/jquery/3.1.1/jquery.min.js"
+	th:src="@{http://cdn.jsdelivr.net/webjars/jquery/3.1.1/jquery.min.js}"></script>
+
+<script
+	src="http://cdn.jsdelivr.net/webjars/jquery-ui/1.12.1/jquery-ui.min.js"
+	th:src="@{http://cdn.jsdelivr.net/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+
+<script
+	src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/js/bootstrap.min.js"
+	th:src="@{http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/js/bootstrap.min.js}"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"
+			th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js}"></script>
+
+<script
+	src="../static/ext/bootstrap-treeview-1.2.0/bootstrap-treeview.min.js"
+	th:src="@{/ext/bootstrap-treeview-1.2.0/bootstrap-treeview.min.js}"></script>
+
+
+
+</head>
+<body id="pageBody" >
+
+	<header th:replace="fragments/header :: header"></header>
+
+
+	<div class="container-fluid">
+		<div layout:fragment="content"></div>
+	</div>
+
+</body>
+</html>

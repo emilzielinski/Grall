@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="adminPanel" >
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+<div class="row" layout:fragment="AdminContent">
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h3>Usuń kategorię</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class = "well well-sm">
+
+                <table class="table table-hover">
+                    <caption> <p>Kategoria</p></caption>
+                    <thead>
+                        <tr>
+                            <th><p>Lp</p></th>
+                            <th><p>Nazwa</p></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item,iter  : ${category}">
+                            <td th:text="${iter.count}"></td>
+                            <td th:text="${item.name}"></td>
+                            <td>
+                                <form method="POST" th:action="@{|/admin/category/${item.idGameCategory}/delete|}">
+                                    <button type="submit" name="submit" value="value" class="btn btn-danger">Usuń</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

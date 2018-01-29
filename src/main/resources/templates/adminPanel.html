@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/mainLayout" >
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+<div class="row" layout:fragment="content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="well well-sm">
+
+                            <ul class="nav nav-list">
+
+                                <li class="nav-header">Artykuł</li>
+                               
+                                <li><a th:href="@{/admin/article/add}">Dodaj</a></li>
+                                <li><a th:href="@{/admin/article/search}">Redaguj</a></li>
+
+                                <li class="nav-header">Użytkownik</li>
+                                <li><a th:href="@{/user/registration}">Dodaj</a></li>
+                                <li><a th:href="@{/admin/users}">Zarządzaj użytkownikami</a></li>
+
+                                <li class="nav-header">Kategorie gier</li>
+                                <li><a th:href="@{/admin/category/add}">Dodaj</a></li>
+                                <li><a th:href="@{/admin/category/delete}">Usuń</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="row" layout:fragment="AdminContent">
+
+                </div>
+            </div>
+        </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="adminPanel" >
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+<div class="row" layout:fragment="AdminContent">
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h3>Dodaj kategorię</h3>
+        </div>
+
+        <div class="panel-body">
+            <form th:action="@{/admin/category/add}" th:object="${gameCategoryCommand}"  method="post" >
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Tytuł</label>
+                    <div class="col-md-5">
+                        <p th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"/>
+                        <input type="text" th:field="*{categoryName}" class="form-control" />
+                    </div>
+                </div>
+
+                <div>
+                    <input type="submit" class="btn btn-success" value="Zapisz"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

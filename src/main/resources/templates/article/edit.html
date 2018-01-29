@@ -1,0 +1,113 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="adminPanel" >
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+
+    <script>
+        $(function(){
+            $('#selectTitle').select2();
+        });
+    </script>
+
+</head>
+<body>
+
+<div class="row" layout:fragment="AdminContent">
+    <div class="panel panel-default">
+         <div class="panel-heading">
+             <div class="row">
+                 <div class="col-md-9">
+                     <h3>Edytuj artykuł</h3>
+                 </div>
+                 <div class="col-md-3">
+                     <form method="POST" th:action="@{|/admin/article/${gameArticleAddCommand.id}/delete|}">
+                         <button type="submit" name="submit" value="value" class="btn btn-danger">Usuń artykuł</button>
+                     </form>
+                 </div>
+             </div>
+         </div>
+
+        <div class="panel-body">
+            <form th:action="@{/admin/article/edit}" th:object="${gameArticleAddCommand}"  method="post" >
+
+                <div th:hidden="${true}">
+                    <input type="text" th:value="${id}" th:field="*{id}"  class="form-control" />
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Tytuł</label>
+                    <div class="col-md-8">
+                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"/>
+                        <input type="text" th:value="${title}" th:field="*{title}"  class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Opis</label>
+                    <div class="col-md-8">
+                        <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error"/>
+                        <input type="text" th:value="${content}" th:field="*{content}"  class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="selectTitle" class="control-label col-md-3">Kategoria</label>
+                    <div class="col-sm-8">
+                        <select id="selectTitle" th:field="*{idCategory}" class="form-control">
+                            <option th:value="*{idCategory}">wybierz</option>
+                            <option th:each="item : ${allCategory}"
+                                    th:value="${item.idGameCategory}"
+                                    th:text="${item.name}">typ sądu
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Obraz</label>
+                    <div class="col-md-8">
+                        <input type="file" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input type="submit" class="btn btn-success" value="Zapisz"/>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class = "well well-sm">
+
+        <table class="table table-hover">
+            <caption> <p>Komentarze</p></caption>
+            <thead>
+            <tr>
+                <th><p>Lp</p></th>
+                <th><p>Komentarz</p></th>
+                <th><p>Data wystawienia</p></th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="item,iter  : ${comments}">
+                <td th:text="${iter.count}"></td>
+                <td th:text="${item.comment}"></td>
+                <td th:text="${item.commentDate}"></td>
+                <td>
+                    <form method="POST" th:action="@{|/admin/article/${gameArticleAddCommand.id}/comment/${item.id}/delete|}">
+                        <button type="submit" name="submit" value="value" class="btn btn-danger">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

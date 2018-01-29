@@ -1,0 +1,73 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="adminPanel" >
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <script>
+        $(function(){
+            $('#selectTitle').select2();
+        });
+    </script>
+</head>
+<body>
+
+<div class="content" layout:fragment="AdminContent">
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h3>Dodaj artykuł</h3>
+        </div>
+
+        <div class="panel-body">
+            <form th:action="@{/admin/article/add}" th:object="${gameArticleAddCommand}"  method="post"
+                  enctype="multipart/form-data">
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Tytuł</label>
+                    <div class="col-md-8">
+                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"/>
+                        <input type="text" th:field="*{title}" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3" >Opis</label>
+                    <div class="col-md-8">
+                        <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" />
+                        <input id="textarea" type="text" th:field="*{content}" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="selectTitle" class="control-label col-md-3">Kategoria</label>
+                    <p th:if="${#fields.hasErrors('idCategory')}" th:errors="*{idCategory}" />
+
+                    <div class="col-md-8">
+                        <select id="selectTitle" th:field="*{idCategory}">
+                            <option  value="">Wszystkie</option>
+                            <option th:each="item : ${gameCategories}"
+                                    th:value="${item.idGameCategory}"
+                                    th:text="${item.name}">kategoria</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Obraz</label>
+                    <div class="col-md-5">
+                        <input type="file" th:field="*{multipartFile}" accept="image/jpeg,image/png,image/gif" class="form-control" />
+                    </div>
+                </div>
+
+                <div>
+                    <input type="submit"  value="Zapisz" class="btn btn-success"/>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

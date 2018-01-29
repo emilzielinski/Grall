@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/mainLayout" >
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+   
+</head>
+<body>
+    <div class="row" layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Kategorie</div>
+                    <div class="panel-body">
+                        <span th:each="item: ${categoryList}">
+                            <a th:text="*{item.name}" th:href="@{|/byCategory/${item.idGameCategory}|}"></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Lista artykułów</div>
+
+                    <div class="panel-body">
+                        <span th:each="item: ${gameArticleList}">
+
+                            <div class="well well-sm">
+                                <div class="row">
+                                    <p><strong>Tytuł:</strong> <span th:text="*{item.title}"></span></p>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p><span th:text="*{item.content}"></span></p>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <p>Srednia ocen: <span class="badge" th:text="*{item.avgScore}"></span></p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div id="picture" class="item">
+                                        <img class="img-responsive center-block" src="#" th:src="@{|/images/${item.picture}|}"/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="row-md-6">
+                                        <p><strong>Data publikacji:</strong> <span th:text="*{item.createDate}"></span></p>
+                                    </div>
+                                    <div class="row-md-6">
+                                        <p><strong>Kategoria:</strong> <span th:text="*{item.categoryName}"></span></p>
+                                    </div>
+                                </div>
+
+                                <div class="href"><a th:href="|/dashboard/article/details/${item.id}|">Więcej</a></div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

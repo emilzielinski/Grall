@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="adminPanel" >
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+
+    <script>
+        $(function(){
+            $('#selectTitle').select2();
+        });
+    </script>
+
+</head>
+<body>
+
+<div class="content" layout:fragment="AdminContent">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+
+                <h3>Wyszukaj artykuł</h3>
+            </div>
+            <form action="#" th:action="@{/admin/article/search}" th:object="${gameArticleSearchCommand}" method="post">
+                <div class="panel-body">
+                    <div class="row">
+
+                        <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" />
+
+                        <select id="selectTitle" th:field="*{id}" style="width:300px">
+                            <option value="">Wszystkie</option>
+                            <option th:each="item : ${searchArticles}"
+                                    th:value="${item.id}"
+                                    th:text="${item.title}">kategoria</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="pull-left">
+                        <button type="submit" class="btn btn-success" >Edytuj</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+
+</body>
+</html>

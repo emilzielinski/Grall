@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse" th:fragment="header">
+    <div class="container-fluid">
+
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/}">Strona Główna</a></li>
+            <li><a th:href="@{/article}">Recenzje</a></li>
+            <li><a th:href="@{/admin}">Panel admina</a> </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a th:href="@{/user/registration}"><span class="glyphicon glyphicon-user"></span> Zarejestruj się</a></li>
+            <li>
+                <div sec:authorize="isAnonymous()">
+                    <a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Zaloguj się</a>
+                </div>
+            </li>
+
+            <li>
+                <div sec:authorize="isAuthenticated()">
+                     <a th:href="@{/logout}"><span class="glyphicon glyphicon-log-in"></span> Wyloguj się</a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+</body>
+</html>
